@@ -15,12 +15,12 @@
       "database": "Postgres",
       "framework": "websharper",
       "language": "F#",
-      "orm": "sqlprovider",
+      "orm": "micro",
       "platform": "Mono",
       "webserver": "None",
       "os": "Linux",
       "database_os": "Linux",
-      "display_name": "websharper-sqlprovider",
+      "display_name": "websharper-sqlprovider"
     }
   }]
 }
