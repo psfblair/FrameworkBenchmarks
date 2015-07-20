@@ -1,0 +1,9 @@
+source https://nuget.org/api/v2
+
+nuget FSharp.Compiler.Tools
+nuget NUnit
+nuget Npgsql
+nuget Unquote
+nuget WebSharper.Warp
+
+github https://github.com/fsprojects/SQLProvider
