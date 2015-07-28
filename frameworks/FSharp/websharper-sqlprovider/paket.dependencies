@@ -6,4 +6,4 @@ nuget Npgsql
 nuget Unquote
 nuget WebSharper.Warp
 
-github https://github.com/fsprojects/SQLProvider
+github fsprojects/SQLProvider

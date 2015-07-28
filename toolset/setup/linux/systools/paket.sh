@@ -1,6 +1,8 @@
 #!/bin/bash
 
-fw_depends mono
+set -ex
+
+# This carries the mono dependency
 fw_depends fsharp
 
 RETCODE=$(fw_exists ${IROOT}/paket.installed)
@@ -13,6 +15,8 @@ fw_get https://github.com/fsprojects/Paket/releases/download/1.19.7/paket.bootst
 mv paket.bootstrapper paket/bin/paket.bootstrapper.exe
 cd paket/bin
 mono paket.bootstrapper.exe
+
+export PAKET_HOME=${IROOT}/paket
 
 echo "export PAKET_HOME=${IROOT}/paket" > ${IROOT}/paket.installed
 echo "export PAKET_EXE=${PAKET_HOME}/bin/paket.exe" >> ${IROOT}/paket.installed
