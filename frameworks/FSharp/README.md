@@ -9,7 +9,7 @@ For further guidance, review the
 ## Mono, F#, and Paket Versions
 
 Installation scripts for Mono and F# are in the toolset/setup/linux/languages directory.
-The F# Paket packet manager is installed via a script in toolset/setup/linux/systools.
+The F# Paket package manager is installed via a script in toolset/setup/linux/systools.
 
 ## Adding a New F# Framework
 

@@ -23,7 +23,7 @@
 
 **Language**
 
-* F# 3.1
+* F# 4.0 
 
 **Platforms**
 
@@ -35,7 +35,7 @@
 
 **Web Stack**
 
-* [WebSharper Warp 3.2](https://www.nuget.org/packages/WebSharper.Warp/)
+* [WebSharper 3.3.1.177](https://www.nuget.org/packages/WebSharper/)
 
 **Database Access Framework**
 

@@ -2,49 +2,10 @@ NUGET
   remote: https://nuget.org/api/v2
   specs:
     FSharp.Compiler.Tools (4.0.0.1)
-    Microsoft.Owin (3.0.1)
-      Owin (>= 1.0)
-    Microsoft.Owin.Diagnostics (3.0.1)
-      Microsoft.Owin (>= 3.0.1)
-      Owin (>= 1.0)
-    Microsoft.Owin.FileSystems (3.0.1)
-    Microsoft.Owin.Host.HttpListener (3.0.1)
-    Microsoft.Owin.Hosting (3.0.1)
-      Microsoft.Owin (>= 3.0.1)
-      Owin (>= 1.0)
-    Microsoft.Owin.SelfHost (3.0.1)
-      Microsoft.Owin (>= 3.0.1)
-      Microsoft.Owin.Diagnostics (>= 3.0.1)
-      Microsoft.Owin.Host.HttpListener (>= 3.0.1)
-      Microsoft.Owin.Hosting (>= 3.0.1)
-      Owin (>= 1.0)
-    Microsoft.Owin.StaticFiles (3.0.1)
-      Microsoft.Owin (>= 3.0.1)
-      Microsoft.Owin.FileSystems (>= 3.0.1)
-      Owin (>= 1.0)
     Npgsql (2.2.5)
     NUnit (2.6.4)
-    Owin (1.0)
     Unquote (3.0.0)
     WebSharper (3.3.1.177)
-    WebSharper.Compiler (3.3.1.177)
-      WebSharper (>= 3.3.1.177)
-    WebSharper.Owin (3.3.1.93)
-      Microsoft.Owin
-      Owin
-      WebSharper
-    WebSharper.Warp (3.3.1.24)
-      Microsoft.Owin
-      Microsoft.Owin.Diagnostics
-      Microsoft.Owin.FileSystems
-      Microsoft.Owin.Host.HttpListener
-      Microsoft.Owin.Hosting
-      Microsoft.Owin.SelfHost
-      Microsoft.Owin.StaticFiles
-      Owin
-      WebSharper
-      WebSharper.Compiler
-      WebSharper.Owin
 GITHUB
   remote: fsprojects/SQLProvider
   specs:
