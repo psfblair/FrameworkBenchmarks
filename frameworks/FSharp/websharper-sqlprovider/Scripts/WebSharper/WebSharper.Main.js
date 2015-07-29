@@ -5106,30 +5106,131 @@
    Unchecked:{
     Compare:function(a,b)
     {
-     var _,matchValue,_1,matchValue1;
+     var objCompare,_2,matchValue,_3,matchValue1;
+     objCompare=function(a1)
+     {
+      return function(b1)
+      {
+       var cmp;
+       cmp=[0];
+       JSModule.ForEach(a1,function(k)
+       {
+        var _,_1;
+        if(!a1.hasOwnProperty(k))
+         {
+          _=false;
+         }
+        else
+         {
+          if(!b1.hasOwnProperty(k))
+           {
+            cmp[0]=1;
+            _1=true;
+           }
+          else
+           {
+            cmp[0]=Unchecked.Compare(a1[k],b1[k]);
+            _1=cmp[0]!==0;
+           }
+          _=_1;
+         }
+        return _;
+       });
+       cmp[0]===0?JSModule.ForEach(b1,function(k)
+       {
+        var _,_1;
+        if(!b1.hasOwnProperty(k))
+         {
+          _=false;
+         }
+        else
+         {
+          if(!a1.hasOwnProperty(k))
+           {
+            cmp[0]=-1;
+            _1=true;
+           }
+          else
+           {
+            _1=false;
+           }
+          _=_1;
+         }
+        return _;
+       }):null;
+       return cmp[0];
+      };
+     };
      if(a===b)
       {
-       _=0;
+       _2=0;
       }
      else
       {
        matchValue=typeof a;
-       if(matchValue==="undefined")
+       if(matchValue==="function")
         {
-         matchValue1=typeof b;
-         _1=matchValue1==="undefined"?0:-1;
+         _3=Operators.FailWith("Cannot compare function values.");
         }
        else
         {
-         _1=matchValue==="function"?Operators.FailWith("Cannot compare function values."):matchValue==="boolean"?a<b?-1:1:matchValue==="number"?a<b?-1:1:matchValue==="string"?a<b?-1:1:a===null?-1:b===null?1:"CompareTo"in a?a.CompareTo(b):(a instanceof Array?b instanceof Array:false)?Unchecked.compareArrays(a,b):(a instanceof Date?b instanceof Date:false)?Unchecked.compareDates(a,b):Unchecked.compareArrays(JSModule.GetFields(a),JSModule.GetFields(b));
+         if(matchValue==="boolean")
+          {
+           _3=a<b?-1:1;
+          }
+         else
+          {
+           if(matchValue==="number")
+            {
+             _3=a<b?-1:1;
+            }
+           else
+            {
+             if(matchValue==="string")
+              {
+               _3=a<b?-1:1;
+              }
+             else
+              {
+               if(matchValue==="object")
+                {
+                 _3=a===null?-1:b===null?1:"CompareTo"in a?a.CompareTo(b):(a instanceof Array?b instanceof Array:false)?Unchecked.compareArrays(a,b):(a instanceof Date?b instanceof Date:false)?Unchecked.compareDates(a,b):(objCompare(a))(b);
+                }
+               else
+                {
+                 matchValue1=typeof b;
+                 _3=matchValue1==="undefined"?0:-1;
+                }
+              }
+            }
+          }
         }
-       _=_1;
+       _2=_3;
       }
-     return _;
+     return _2;
     },
     Equals:function(a,b)
     {
-     var _,matchValue;
+     var objEquals,_,matchValue;
+     objEquals=function(a1)
+     {
+      return function(b1)
+      {
+       var eqR;
+       eqR=[true];
+       JSModule.ForEach(a1,function(k)
+       {
+        eqR[0]=!a1.hasOwnProperty(k)?true:b1.hasOwnProperty(k)?Unchecked.Equals(a1[k],b1[k]):false;
+        return!eqR[0];
+       });
+       eqR[0]?JSModule.ForEach(b1,function(k)
+       {
+        eqR[0]=!b1.hasOwnProperty(k)?true:a1.hasOwnProperty(k);
+        return!eqR[0];
+       }):null;
+       return eqR[0];
+      };
+     };
      if(a===b)
       {
        _=true;
@@ -5137,7 +5238,7 @@
      else
       {
        matchValue=typeof a;
-       _=matchValue==="object"?a===null?false:b===null?false:"Equals"in a?a.Equals(b):(a instanceof Array?b instanceof Array:false)?Unchecked.arrayEquals(a,b):(a instanceof Date?b instanceof Date:false)?Unchecked.dateEquals(a,b):Unchecked.arrayEquals(JSModule.GetFields(a),JSModule.GetFields(b)):false;
+       _=matchValue==="object"?(((a===null?true:a===undefined)?true:b===null)?true:b===undefined)?false:"Equals"in a?a.Equals(b):(a instanceof Array?b instanceof Array:false)?Unchecked.arrayEquals(a,b):(a instanceof Date?b instanceof Date:false)?Unchecked.dateEquals(a,b):(objEquals(a))(b):false;
       }
      return _;
     },

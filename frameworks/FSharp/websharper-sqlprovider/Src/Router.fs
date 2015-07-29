@@ -17,8 +17,6 @@ type Endpoints =
     | [<EndPoint "GET /updates">]   DataUpdate of numberOfQueries: int
     | [<EndPoint "GET /updates">]   DataUpdateNoParam
     | [<EndPoint "GET /updates">]   DataUpdateBadParam of badParameter: string
-//    | [<EndPoint "GET /queries">][<Query("queries")>]  MultipleQuery of int
-//    | [<EndPoint "GET /updates">][<Query("queries")>]  DataUpdate of int
 
 
 let BenchmarksApplication =

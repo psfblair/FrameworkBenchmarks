@@ -1,5 +1,5 @@
 {
-  "framework": "websharper",
+  "framework": "websharper-sqlprovider",
   "tests": [{
     "default": {
       "setup_file": "setup",

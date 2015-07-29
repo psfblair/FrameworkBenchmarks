@@ -6,3 +6,4 @@ packages/
 *.dll
 *.userprefs
 paket-files/
+!paket.lock
