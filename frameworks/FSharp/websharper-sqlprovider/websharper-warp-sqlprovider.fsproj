@@ -70,8 +70,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
-    <None Include="websharper-sqlprovider.config" />
     <None Include="README.md" />
+    <None Include="websharper-warp-sqlprovider.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Src\" />
@@ -206,7 +206,6 @@
   <ItemGroup>
     <Reference Include="nunit.framework">
       <HintPath>packages\NUnit\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
   </ItemGroup>

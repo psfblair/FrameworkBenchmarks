@@ -1,5 +1,5 @@
 {
-  "framework": "websharper-sqlprovider",
+  "framework": "websharper-warp-sqlprovider",
   "tests": [{
     "default": {
       "setup_file": "setup",
@@ -20,7 +20,7 @@
       "webserver": "None",
       "os": "Linux",
       "database_os": "Linux",
-      "display_name": "websharper-sqlprovider"
+      "display_name": "websharper-warp-sqlprovider-mono"
     }
   }]
 }

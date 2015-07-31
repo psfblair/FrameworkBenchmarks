@@ -27,7 +27,8 @@ $play_installer_file      = "play-$play_version.zip"
 $sbt_version              = "0.13.5"
 $mercurial_installer_file = "mercurial-2.6.1-x64.msi"
 $cygwin_installer_file    = "setup-x86_64.exe"
-
+$paket_installer_version  = "1.21.1"
+$paket_installer_file     = "paket.bootstrapper.exe"
 
 $basedir = "C:\FrameworkBenchmarks"
 $workdir = "$basedir\installs"
@@ -348,5 +349,18 @@ $cygwin_installer_local = "$cygwin_installer_dir\$cygwin_installer_file"
 $cygwin_install_dir = "C:\Cygwin"
 Start-Process $cygwin_installer_local "-q -n -l $cygwin_installer_dir -s http://mirrors.kernel.org/sourceware/cygwin/ -R $cygwin_install_dir -P openssh" -WorkingDirectory "$cygwin_installer_dir" -Wait -RedirectStandardOutput $cygwin_installer_dir\install.log
 $env:Path += ";$cygwin_install_dir;$cygwin_install_dir\bin"; [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
+
+#
+# Paket package manager 
+#
+Write-Host "Installing Paket...`n"
+$paket_installer_url = "https://github.com/fsprojects/Paket/releases/download/$paket_installer_version/$paket_installer_file"
+$paket_install_dir = "C:\FSharp\Paket"
+New-Item -Path $paket_install_dir -Type directory -Force | Out-Null
+$paket_installer_local = "$paket_install_dir\$paket_installer_file"
+(New-Object System.Net.WebClient).DownloadFile($paket_installer_url, $paket_installer_local)
+
+Start-Process $paket_installer_local
+$env:Path += ";$paket_install_dir"; [Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
 
 cd $basedir
