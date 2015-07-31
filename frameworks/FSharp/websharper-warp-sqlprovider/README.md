@@ -36,6 +36,7 @@
 **Web Stack**
 
 * [WebSharper 3.3.1.177](https://www.nuget.org/packages/WebSharper/)
+* [WebSharper Warp 3.3.1.24](https://www.nuget.org/packages/Websharper.Warp)
 
 **Database Access Framework**
 
