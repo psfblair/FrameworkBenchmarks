@@ -5,6 +5,6 @@ nuget FSharp.Compiler.Tools
 nuget NUnit
 nuget Npgsql
 nuget Unquote
-nuget WebSharper
+nuget WebSharper.Warp
 
 github fsprojects/SQLProvider

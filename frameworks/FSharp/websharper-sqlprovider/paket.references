@@ -2,5 +2,5 @@ FSharp.Compiler.Tools
 Npgsql
 NUnit
 Unquote
-WebSharper
 FAKE
+WebSharper.Warp
