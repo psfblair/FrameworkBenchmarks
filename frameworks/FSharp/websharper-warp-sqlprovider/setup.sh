@@ -23,7 +23,7 @@ cd ${TROOT}
 # SQL type provider to work.
 sed -i -e 's/Host=.*$/Host='"${DBHOST};/" Src/Db.fs
 
-xbuild websharper-sqlprovider.fsproj /p:Configuration=Release
+xbuild websharper-warp-sqlprovider.fsproj /p:Configuration=Release
 
 # mono -O=all $TROOT/bin/Release/websharper-sqlprovider.exe > server.log 2>&1 &
 ${TROOT}/start.sh &
