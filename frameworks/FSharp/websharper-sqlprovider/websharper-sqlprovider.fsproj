@@ -17,6 +17,12 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <Tailcalls>false</Tailcalls>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Custom" name="Build SQLProvider (Windows)" command="./build.cmd" workingdir="${ProjectDir}/paket-files/fsprojects/SQLProvider/" externalConsole="True" />
+        <Command type="Custom" name="Build SQLProvider (UN*X)" command="./build.sh" workingdir="${ProjectDir}/paket-files/fsprojects/SQLProvider/" externalConsole="True" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,6 +32,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <Tailcalls>true</Tailcalls>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Custom" name="Build SQLProvider (Windows)" command="./build.cmd" workingdir="${ProjectDir}/paket-files/fsprojects/SQLProvider/" externalConsole="True" />
+        <Command type="Custom" name="Build SQLProvider (UN*X)" command="./build.sh" workingdir="${ProjectDir}/paket-files/fsprojects/SQLProvider/" externalConsole="True" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Src\Db.fs" />
@@ -74,7 +86,7 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+        <XspParameters Port="9000" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
