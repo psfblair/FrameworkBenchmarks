@@ -9,9 +9,6 @@ fw_depends mono
 
 . ${IROOT}/mono.installed
 
-# Need F# 4.x to compile type provider with e
-# fw_apt_to_iroot fsharp mono-snapshot-$SNAPDATE
-
 git clone https://github.com/fsharp/fsharp
 cd fsharp
 git checkout fsharp4
