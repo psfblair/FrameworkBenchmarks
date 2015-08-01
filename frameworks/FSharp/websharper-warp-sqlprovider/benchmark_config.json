@@ -20,7 +20,49 @@
       "webserver": "None",
       "os": "Linux",
       "database_os": "Linux",
-      "display_name": "websharper-warp-sqlprovider-mono"
-    }
+      "display_name": "websharper-warp-pg-mono"
+    },
+    "postgres-windows": {
+      "setup_file": "setup_winpg",
+      "json_url": "/json",
+      "db_url": "/db",
+      "query_url": "/queries/",
+      "fortune_url": "/fortunes",
+      "update_url": "/updates/", 
+      "plaintext_url": "/plaintext",
+      "port": 9000,
+      "approach": "Realistic",
+      "classification": "Micro",
+      "database": "Postgres",
+      "framework": "websharper",
+      "language": "F#",
+      "orm": "micro",
+      "platform": "NET",
+      "webserver": "None",
+      "os": "Windows",
+      "database_os": "Linux",
+      "display_name": "websharper-warp-pg-win"
+    },
+    "mssql-windows": {
+      "setup_file": "setup_mssql",
+      "json_url": "/json",
+      "db_url": "/db",
+      "query_url": "/queries/",
+      "fortune_url": "/fortunes",
+      "update_url": "/updates/", 
+      "plaintext_url": "/plaintext",
+      "port": 9000,
+      "approach": "Realistic",
+      "classification": "Micro",
+      "database": "SQLServer",
+      "framework": "websharper",
+      "language": "F#",
+      "orm": "micro",
+      "platform": "NET",
+      "webserver": "None",
+      "os": "Windows",
+      "database_os": "Windows",
+      "display_name": "websharper-warp-mssql-win"
+    }  
   }]
 }

@@ -3,6 +3,11 @@
 open System
 open FSharp.Data.Sql
 
+(* For reference
+PostgreSQL connectionString="server=localhost; user id=benchmarkdbuser; password=benchmarkdbpass; database=hello_world" providerName="Npgsql"/>
+SQLServer  connectionString="server=localhost; user id=benchmarkdbuser; password=B3nchmarkDBPass; database=hello_world" providerName="System.Data.SqlClient"/>
+*)
+
 [<Literal>] 
 let compileTimeConnectionString = """
 Host=127.0.0.1;

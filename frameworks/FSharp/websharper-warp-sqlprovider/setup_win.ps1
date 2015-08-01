@@ -18,28 +18,33 @@ function Exec
     }
 }
 
-$root = "C:\FrameworkBenchmarks\websharper-warp-sqlprovider"
-$msbuild = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe"
+$msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
 
 # Stop
 Get-Process | Where-Object { $_.Name -ieq "websharper-warp-sqlprovider" } | Stop-Process
 
 if ($action -eq 'start') {
     # Clean
-    Remove-Item $root\bin\* -recurse
-    Remove-Item $root\obj\* -recurse
-    Remove-Item $root\paket-files\fsprojects\SQLProvider\bin\* -recurse
-
+	If (Test-Path bin) {
+		Remove-Item bin\* -recurse
+	}
+	If (Test-Path obj) {
+		Remove-Item obj\* -recurse
+	}
+	If (Test-Path paket-files\fsprojects\SQLProvider\bin) {
+		Remove-Item paket-files\fsprojects\SQLProvider\bin\* -recurse
+	}
+	
     # get dependencies
     paket.exe install
 
     # Build the SQL Provider
-    Set-Location -Path $root\paket-files\fsprojects\SQLProvider
-    Exec { & build.cmd }
+    Set-Location -Path paket-files\fsprojects\SQLProvider
+    Exec { & .\build.cmd }
     
     # Build the project
-    Set-Location -Path $root
-    Exec { & $msbuild "$root\websharper-warp-sqlprovider.sln" /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
+    Set-Location -Path ..\..\..\
+    Exec { & $msbuild "websharper-warp-sqlprovider.sln" /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
     
-    Start-Process "$root\bin\Release\websharper-warp-sqlprovider.exe"
+    Start-Process "bin\Release\websharper-warp-sqlprovider.exe"
 }
