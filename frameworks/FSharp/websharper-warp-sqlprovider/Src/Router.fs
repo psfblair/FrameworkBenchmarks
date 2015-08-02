@@ -18,7 +18,7 @@ type Endpoints =
     | [<EndPoint "GET /updates">]   DataUpdateNoParam
     | [<EndPoint "GET /updates">]   DataUpdateBadParam of badParameter: string
 
-
+[<Website>]
 let BenchmarksApplication =
     let random = System.Random()
 
@@ -40,6 +40,8 @@ let BenchmarksApplication =
         | Endpoints.DataUpdateNoParam 
         | Endpoints.DataUpdateBadParam (_)          -> World.multipleUpdateContent random 1 |> Content.Json
 
-
+#if WARP
 [<EntryPoint>]
 do Warp.RunAndWaitForInput (BenchmarksApplication, false, "http://127.0.0.1:9000") |> ignore
+#else
+#endif

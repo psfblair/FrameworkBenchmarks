@@ -42,6 +42,32 @@
     </CustomCommands>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
+  <ItemGroup>
+    <Compile Include="Src\Db.fs" />
+    <Compile Include="Src\Fortune\Types.fs" />
+    <Compile Include="Src\Fortune\Data.fs" />
+    <Compile Include="Src\Fortune\View.fs" />
+    <Compile Include="Src\Fortune\Controller.fs" />
+    <Compile Include="Src\Fortune\FortuneTests.fs" />
+    <Compile Include="Src\World\Types.fs" />
+    <Compile Include="Src\World\Data.fs" />
+    <Compile Include="Src\World\Controller.fs" />
+    <Compile Include="Src\World\WorldTests.fs" />
+    <Compile Include="Src\Hello\Hello.fs" />
+    <Compile Include="Src\Router.fs" />
+    <None Include="README.md" />
+    <None Include="websharper-warp-sqlprovider.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="FSharp.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Data" />
+    <Reference Include="System" />
+    <Reference Include="FSharp.Data.SqlProvider">
+      <HintPath>paket-files\fsprojects\SQLProvider\bin\FSharp.Data.SqlProvider.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <Choose>
     <When Condition="($(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6')) Or ($(TargetFrameworkIdentifier) == 'MonoAndroid') Or ($(TargetFrameworkIdentifier) == 'MonoTouch')">
       <ItemGroup>
@@ -166,6 +192,13 @@
       </ItemGroup>
     </When>
   </Choose>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>packages\NUnit\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+  </ItemGroup>
   <Choose>
     <When Condition="($(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6')) Or ($(TargetFrameworkIdentifier) == 'MonoAndroid') Or ($(TargetFrameworkIdentifier) == 'MonoTouch')">
       <ItemGroup>
@@ -375,35 +408,4 @@
       </ItemGroup>
     </When>
   </Choose>
-  <ItemGroup>
-    <Compile Include="Src\Db.fs" />
-    <Compile Include="Src\Fortune\Types.fs" />
-    <Compile Include="Src\Fortune\Data.fs" />
-    <Compile Include="Src\Fortune\View.fs" />
-    <Compile Include="Src\Fortune\Controller.fs" />
-    <Compile Include="Src\Fortune\FortuneTests.fs" />
-    <Compile Include="Src\World\Types.fs" />
-    <Compile Include="Src\World\Data.fs" />
-    <Compile Include="Src\World\Controller.fs" />
-    <Compile Include="Src\World\WorldTests.fs" />
-    <Compile Include="Src\Hello\Hello.fs" />
-    <Compile Include="Src\Router.fs" />
-    <None Include="README.md" />
-    <None Include="websharper-warp-sqlprovider.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="FSharp.Core" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Data" />
-    <Reference Include="System" />
-    <Reference Include="FSharp.Data.SqlProvider">
-      <HintPath>paket-files\fsprojects\SQLProvider\bin\FSharp.Data.SqlProvider.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>packages\NUnit\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-      <Paket>True</Paket>
-    </Reference>
-  </ItemGroup>
 </Project>
