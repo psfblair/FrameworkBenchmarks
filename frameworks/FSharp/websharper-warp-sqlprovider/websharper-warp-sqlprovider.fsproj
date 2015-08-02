@@ -23,9 +23,10 @@
         <Command type="Custom" name="Build SQLProvider (UN*X)" command="./build.sh" workingdir="${ProjectDir}/paket-files/fsprojects/SQLProvider/" externalConsole="True" />
       </CustomCommands>
     </CustomCommands>
+    <OtherFlags>--define:WARP</OtherFlags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <DebugSymbols>false</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -40,6 +41,7 @@
         <Command type="Custom" name="Build SQLProvider (UN*X)" command="./build.sh" workingdir="${ProjectDir}/paket-files/fsprojects/SQLProvider/" externalConsole="True" />
       </CustomCommands>
     </CustomCommands>
+    <OtherFlags>--define:WARP</OtherFlags>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
