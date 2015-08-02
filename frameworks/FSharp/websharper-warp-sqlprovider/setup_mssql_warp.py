@@ -14,7 +14,10 @@ def start(args, logfile, errfile):
     return 1
   
   try:
-    setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Host=.*", "Host=" + args.database_host)
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Host=.*", "Host=" + args.database_host + ";")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Password=.*", "Password=B3nchmarkDBPass;")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Common.DatabaseProviderTypes.POSTGRESQL", "Common.DatabaseProviderTypes.MSSQLSERVER")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "CResolutionPath.*,", "")
     subprocess.check_call("powershell -Command .\\setup_win.ps1 start", cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
     return 0
   except subprocess.CalledProcessError:
