@@ -22,23 +22,23 @@ type Endpoints =
 let BenchmarksApplication =
     let random = System.Random()
 
-    Warp.CreateApplication (fun ctx endpoint ->
-        match endpoint with
-        | Endpoints.Plaintext   -> Hello.plaintextContent |> CustomContentAsync 
-        | Endpoints.Json        -> Hello.jsonContent      |> JsonContentAsync 
-        | Endpoints.Fortunes    -> Fortune.fortuneContent |> Content.WithTemplateAsync Fortunes.View.fortuneTemplate 
+    Application.MultiPage <| fun ctx -> function
+        | Endpoints.Plaintext   -> Hello.plaintextContent |> Content.Text 
+        | Endpoints.Json        -> Hello.jsonContent |> Content.Json
+        | Endpoints.Fortunes    -> let pageContent = Fortune.fortuneContent
+                                   Content.Page(Doctype = pageContent.Doctype, Title = pageContent.Title, Body = pageContent.Body)
 
-        | Endpoints.SingleQuery -> World.singleQueryContent random |> JsonContentAsync
+        | Endpoints.SingleQuery                     -> World.singleQueryContent random |> Content.Json
 
-        | Endpoints.MultipleQuery (numberOfQueries)
-                                -> World.multipleQueryContent random numberOfQueries  |> JsonContentAsync
-        | Endpoints.MultipleQueryNoParam | Endpoints.MultipleQueryBadParam (_) 
-                                -> World.multipleQueryContent random 1  |> JsonContentAsync
-        | Endpoints.DataUpdate    (numberOfQueries)  
-                                -> World.multipleUpdateContent random numberOfQueries |> JsonContentAsync
-        | Endpoints.DataUpdateNoParam | Endpoints.DataUpdateBadParam (_)
-                                -> World.multipleUpdateContent random 1 |> JsonContentAsync
-    )
+        | Endpoints.MultipleQuery (numberOfQueries) -> World.multipleQueryContent random numberOfQueries |> Content.Json
+
+        | Endpoints.MultipleQueryNoParam 
+        | Endpoints.MultipleQueryBadParam (_)       -> World.multipleQueryContent random 1 |> Content.Json
+
+        | Endpoints.DataUpdate    (numberOfQueries) -> World.multipleUpdateContent random numberOfQueries |> Content.Json
+
+        | Endpoints.DataUpdateNoParam 
+        | Endpoints.DataUpdateBadParam (_)          -> World.multipleUpdateContent random 1 |> Content.Json
 
 
 [<EntryPoint>]

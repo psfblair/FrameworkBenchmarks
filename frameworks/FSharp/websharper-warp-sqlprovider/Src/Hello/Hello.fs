@@ -6,7 +6,7 @@ open WebSharper.Sitelets
 type Hello = { message: string }
 
 let private helloMessage: string = "Hello, World!"
-let private toHello (message: string): Hello = { Hello.message = message } 
+let private toHelloType (message: string): Hello = { Hello.message = message } 
 
 //Not allowed to store entire response in a preallocated buffer, so we make this a function.
 let private toPlaintextResponse (msg: string) : Http.Response = { 
@@ -17,6 +17,6 @@ let private toPlaintextResponse (msg: string) : Http.Response = {
                 w.Write(msg) 
         }
 
-let plaintextContent context = async { return helloMessage |> toPlaintextResponse  }
+let plaintextContent = helloMessage
 
-let jsonContent context = async { return helloMessage |> toHello } 
+let jsonContent = helloMessage |> toHelloType 

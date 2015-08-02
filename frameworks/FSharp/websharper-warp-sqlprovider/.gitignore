@@ -7,3 +7,4 @@ packages/
 *.userprefs
 paket-files/
 !paket.lock
+.vs

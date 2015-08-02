@@ -17,4 +17,4 @@ let internal fortunes = additionalFortune
                         |> Seq.append allFortunes
                         |> sortedByMessage
 
-let fortuneContent context = fortunes |> toFortunePageContent
+let fortuneContent = fortunes |> toFortunePageContent
