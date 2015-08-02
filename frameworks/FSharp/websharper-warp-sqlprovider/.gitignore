@@ -8,3 +8,4 @@ packages/
 paket-files/
 !paket.lock
 .vs
+Scripts/
