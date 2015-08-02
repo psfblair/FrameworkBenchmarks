@@ -5,7 +5,7 @@ import os
 
 def start_debug():
 	class Args():
-		database_host = "localhost"
+		database_host = ".\SQLEXPRESS"
 	os.chdir("..")
 	start(Args(), sys.stdout, sys.stderr)
 	
