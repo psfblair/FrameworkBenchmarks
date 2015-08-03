@@ -9,9 +9,9 @@ let private next (random: Random) = random.Next(1, 10000)
 
 let private singleQueryFromWorld (dbContext: Db.dataContext) id = 
     query {
-       for row in dbContext.``[PUBLIC].[WORLD]`` do  
-       where (row.id = id)
-       select { id = row.id; randomNumber = row.randomnumber }
+       for record in dbContext.``[PUBLIC].[WORLD]`` do  
+       where (record.id = id)
+       select { id = record.id; randomNumber = record.randomnumber }
     } |> Seq.head
 
 
@@ -21,8 +21,8 @@ let private singleRandomQueryFromWorld (dbContext: Db.dataContext) (random: Rand
 
 let private updateSingleWorldRecord (dbContext: Db.dataContext) id update = 
     let record = query {
-                   for row in dbContext.``[PUBLIC].[WORLD]`` do  
-                   where (row.id = id)
+                   for record in dbContext.``[PUBLIC].[WORLD]`` do  
+                   where (record.id = id)
                  } |> Seq.head
 
     let oldRandom = record.randomnumber    // Make sure record is actually fetched

@@ -21,7 +21,12 @@ def start(args, logfile, errfile):
     setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Pooling=.*", "")
     setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "MaxPoolSize=.*", "max pool size=32767")
     setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Common.DatabaseProviderTypes.POSTGRESQL", "Common.DatabaseProviderTypes.MSSQLSERVER")
-    setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "ResolutionPath.*,", "")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "ResolutionPath.*,", "CaseSensitivityChange=Common.CaseSensitivityChange.ORIGINAL,")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/World/Data.fs", "\[PUBLIC\].\[WORLD\]", "[dbo].[World]")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/World/Data.fs", "record.randomnumber", "record.randomNumber")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/World/WorldTests.fs", "\[PUBLIC\].\[WORLD\]", "[dbo].[World]")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/World/WorldTests.fs", "record.randomnumber", "record.randomNumber")
+    setup_util.replace_text("websharper-warp-sqlprovider/Src/Fortune/Data.fs", "\[PUBLIC\].\[FORTUNE\]", "[dbo].[Fortune]")
     subprocess.check_call("powershell -Command .\\setup_win.ps1 start", cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
     return 0
   except subprocess.CalledProcessError:
