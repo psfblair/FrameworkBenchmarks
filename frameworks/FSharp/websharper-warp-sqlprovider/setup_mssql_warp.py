@@ -14,6 +14,8 @@ def start(args, logfile, errfile):
     return 1
   
   try:
+    subprocess.check_call("git checkout -f Src", cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
+    
     setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Host=.*", "Server=" + args.database_host + ";")
     setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Port=.*", "")
     setup_util.replace_text("websharper-warp-sqlprovider/Src/Db.fs", "Username=.*", "User Id=benchmarkdbuser;")
@@ -27,6 +29,7 @@ def start(args, logfile, errfile):
     setup_util.replace_text("websharper-warp-sqlprovider/Src/World/WorldTests.fs", "\[PUBLIC\].\[WORLD\]", "[dbo].[World]")
     setup_util.replace_text("websharper-warp-sqlprovider/Src/World/WorldTests.fs", "record.randomnumber", "record.randomNumber")
     setup_util.replace_text("websharper-warp-sqlprovider/Src/Fortune/Data.fs", "\[PUBLIC\].\[FORTUNE\]", "[dbo].[Fortune]")
+
     subprocess.check_call("powershell -Command .\\setup_win.ps1 start", cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
     return 0
   except subprocess.CalledProcessError:
