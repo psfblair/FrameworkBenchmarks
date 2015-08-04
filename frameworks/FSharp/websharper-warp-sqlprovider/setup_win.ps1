@@ -1,4 +1,4 @@
-param($action)
+param($action, $webhost)
 
 $ErrorActionPreference = 'Stop'
 
@@ -18,10 +18,17 @@ function Exec
     }
 }
 
+$iis_wwwroot = "www"
 $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
 
 # Stop
-Get-Process | Where-Object { $_.Name -ieq "websharper-warp-sqlprovider" } | Stop-Process
+if ($webhost -eq 'iis') {
+	if (Get-WebSite -Name Benchmarks) { Remove-WebSite -Name Benchmarks }
+	Get-ChildItem -Path $wwwroot -Recurse -ErrorAction 'SilentlyContinue' | Remove-Item -Force -Recurse -ErrorAction 'SilentlyContinue'; 
+	Remove-Item -Force -Recurse $wwwroot -ErrorAction 'SilentlyContinue'
+} else {
+	Get-Process | Where-Object { $_.Name -ieq "websharper-warp-sqlprovider" } | Stop-Process
+}
 
 if ($action -eq 'start') {
     # Clean
@@ -44,7 +51,14 @@ if ($action -eq 'start') {
     
     # Build the project
     Set-Location -Path ..\..\..\
-    Exec { & $msbuild "websharper-warp-sqlprovider.sln" /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
-    
-    Start-Process "bin\Release\websharper-warp-sqlprovider.exe"
+	
+	if ($webhost -eq 'iis') {
+		# Create a website in IIS
+		New-Item -Path $wwwroot -Type directory | Out-Null
+		New-WebSite -Name Benchmarks -Port 8080 -PhysicalPath $wwwroot
+		Exec { & $msbuild "websharper-warp-sqlprovider.sln" /p:DeployOnBuild=true /p:PublishProfile=IIS /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
+	} else {
+		Exec { & $msbuild "websharper-warp-sqlprovider.sln" /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
+		Start-Process "bin\Release\websharper-warp-sqlprovider.exe"
+	}
 }

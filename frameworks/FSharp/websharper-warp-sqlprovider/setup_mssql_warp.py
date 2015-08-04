@@ -6,13 +6,19 @@ import os
 def start_debug():
 	class Args():
 		database_host = ".\SQLEXPRESS"
+		name = "websharper-iis-mssql-win"
 	os.chdir("..")
 	start(Args(), sys.stdout, sys.stderr)
 	
 def start(args, logfile, errfile):
   if os.name != 'nt':
     return 1
-  
+
+  if 'iis' in args.name
+	webhost = 'iis'
+  else
+    webhost = 'owin'
+
   try:
     subprocess.check_call("git checkout -f Src", cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
     
@@ -30,7 +36,7 @@ def start(args, logfile, errfile):
     setup_util.replace_text("websharper-warp-sqlprovider/Src/World/WorldTests.fs", "record.randomnumber", "record.randomNumber")
     setup_util.replace_text("websharper-warp-sqlprovider/Src/Fortune/Data.fs", "\[PUBLIC\].\[FORTUNE\]", "[dbo].[Fortune]")
 
-    subprocess.check_call("powershell -Command .\\setup_win.ps1 start", cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
+    subprocess.check_call("powershell -Command .\\setup_win.ps1 start " + webhost, cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
     return 0
   except subprocess.CalledProcessError:
     return 1
@@ -39,5 +45,5 @@ def stop(logfile, errfile):
   if os.name != 'nt':
     return 0
   
-  subprocess.check_call("powershell -Command .\\setup_win.ps1 stop", cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
+  subprocess.check_call("powershell -Command .\\setup_win.ps1 stop " + webhost, cwd="websharper-warp-sqlprovider", stderr=errfile, stdout=logfile)
   return 0

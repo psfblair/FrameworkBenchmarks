@@ -68,6 +68,9 @@
       <Content Include="Scripts/**/*.*" />
     </ItemGroup>
   </Target>
+    <ItemGroup>
+    <None Include="IIS.pubxml" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
