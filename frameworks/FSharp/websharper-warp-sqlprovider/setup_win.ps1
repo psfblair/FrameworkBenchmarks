@@ -56,7 +56,7 @@ if ($action -eq 'start') {
 		# Create a website in IIS
 		New-Item -Path $wwwroot -Type directory | Out-Null
 		New-WebSite -Name Benchmarks -Port 8080 -PhysicalPath $wwwroot
-		Exec { & $msbuild "websharper-warp-sqlprovider.sln" /p:DeployOnBuild=true /p:PublishProfile=IIS /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
+		Exec { & $msbuild "websharper-iis-sqlprovider.sln" /p:DeployOnBuild=true /p:PublishProfile=IIS /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
 	} else {
 		Exec { & $msbuild "websharper-warp-sqlprovider.sln" /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
 		Start-Process "bin\Release\websharper-warp-sqlprovider.exe"

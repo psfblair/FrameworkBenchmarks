@@ -1,4 +1,4 @@
-# WebSharper Warp on Mono with FSharp.Data.SqlProvider
+# WebSharper with FSharp.Data.SqlProvider
 
 ## Tests
 
@@ -27,11 +27,13 @@
 
 **Platforms**
 
+* .NET Framework 4.5 (Windows)
 * Mono 4.3.X (Linux)
 
 **Web Servers**
 
 * OWIN Self-hosting
+* IIS 8 (Windows)
 
 **Web Stack**
 
@@ -45,4 +47,5 @@
 **DBMS**
 
 * PostgreSQL - [driver](http://www.nuget.org/packages/Npgsql/) 
+* Microsoft SQL Server 
 

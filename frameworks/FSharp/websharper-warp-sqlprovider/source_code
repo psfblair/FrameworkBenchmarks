@@ -1,7 +1,6 @@
 ./websharper-sqlprovider/Src/Db.fs
 ./websharper-sqlprovider/Src/Fortune/Types.fs
 ./websharper-sqlprovider/Src/Fortune/Data.fs
-./websharper-sqlprovider/Src/Fortune/Fortunes.html">
 ./websharper-sqlprovider/Src/Fortune/View.fs
 ./websharper-sqlprovider/Src/Fortune/Controller.fs
 ./websharper-sqlprovider/Src/Fortune/FortuneTests.fs
