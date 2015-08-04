@@ -14,9 +14,9 @@ def start(args, logfile, errfile):
   if os.name != 'nt':
     return 1
 
-  if 'iis' in args.name
+  if 'iis' in args.name:
 	webhost = 'iis'
-  else
+  else:
     webhost = 'owin'
 
   try:
