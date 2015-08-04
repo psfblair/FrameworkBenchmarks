@@ -1,5 +1,5 @@
 {
-  "framework": "websharper-warp-sqlprovider",
+  "framework": "websharper-sqlprovider",
   "tests": [{
     "default": {
       "setup_file": "setup",
@@ -20,7 +20,7 @@
       "webserver": "None",
       "os": "Linux",
       "database_os": "Linux",
-      "display_name": "websharper-warp-sqlprovider-pg-mono"
+      "display_name": "websharper-sqlprovider-warp-pg-mono"
     },
     "postgres-windows-warp": {
       "setup_file": "setup_winpg",
@@ -41,7 +41,7 @@
       "webserver": "None",
       "os": "Windows",
       "database_os": "Linux",
-      "display_name": "websharper-warp-sqlprovider-pg-win"
+      "display_name": "websharper-sqlprovider-warp-pg-win"
     },
     "mssql-windows-warp": {
       "setup_file": "setup_mssql",
@@ -62,7 +62,7 @@
       "webserver": "None",
       "os": "Windows",
       "database_os": "Windows",
-      "display_name": "websharper-warp-sqlprovider-mssql-win"
+      "display_name": "websharper-sqlprovider-warp-mssql-win"
     },
     "postgres-windows-iis": {
       "setup_file": "setup_winpg",
@@ -83,7 +83,7 @@
       "webserver": "IIS",
       "os": "Windows",
       "database_os": "Linux",
-      "display_name": "websharper-iis-sqlprovider-pg"
+      "display_name": "websharper-sqlprovider-iis-pg"
     },
     "mssql-windows-iis": {
       "setup_file": "setup_mssql",
@@ -104,7 +104,7 @@
       "webserver": "IIS",
       "os": "Windows",
       "database_os": "Windows",
-      "display_name": "websharper-iis-sqlprovider-mssql"
+      "display_name": "websharper-sqlprovider-iis-mssql"
     }   
   }]
 }
