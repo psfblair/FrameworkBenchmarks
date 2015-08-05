@@ -45,6 +45,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Src\Routes.fs" />
     <Compile Include="Src\Db.fs" />
     <Compile Include="Src\Fortune\Types.fs" />
     <Compile Include="Src\Fortune\Data.fs" />
@@ -197,7 +198,6 @@
   <ItemGroup>
     <Reference Include="nunit.framework">
       <HintPath>packages\NUnit\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
   </ItemGroup>

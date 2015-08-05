@@ -1,7 +1,7 @@
 ﻿module Benchmarks.WebSharper.SqlProvider.Fortunes.View
 
 open Benchmarks.WebSharper.SqlProvider.Fortunes.Types
-
+open Benchmarks.WebSharper.SqlProvider.Routes
 open WebSharper
 open WebSharper.Sitelets
 open WebSharper.Sitelets.Content
@@ -24,8 +24,12 @@ let private toFortuneRows (fortunes: seq<Fortune>): list<Element> =
 let private toTable (headerRow: Element) (fortuneRows: list<Element>): list<Element> =
     [ Table (headerRow :: fortuneRows) ]
 
+let toPage (pageContent: ContentForTemplate) = Content.Page(Doctype = pageContent.Doctype, 
+                                                            Title = pageContent.Title, 
+                                                            Body = pageContent.Body)
+
 //Requirement: must be UTF-8 with HTML starting with <!DOCTYPE html>
-let toFortunePageContent (fortunes: seq<Fortune>) = 
+let toFortunePageContent (fortunes: seq<Fortune>): Async<Content<Endpoints>> = 
     let pageBody = fortunes |> toFortuneRows |> toTable headerRow 
-    { Doctype = "<!DOCTYPE html>"; Title = "Fortunes"; Body = pageBody }
+    { Doctype = "<!DOCTYPE html>"; Title = "Fortunes"; Body = pageBody } |> toPage
 

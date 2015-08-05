@@ -1,24 +1,12 @@
 ﻿module Benchmarks.WebSharper.SqlProvider.Router
 
 open Benchmarks.WebSharper.SqlProvider
-open Benchmarks.WebSharper.SqlProvider.Fortunes.View
+open Benchmarks.WebSharper.SqlProvider.Routes
 open WebSharper
 open WebSharper.Sitelets
 open WebSharper.Sitelets.Content
 open WebSharper.Sitelets.ActionEncoding
 open System
-
-type Endpoints =
-    | [<EndPoint "GET /plaintext">] Plaintext
-    | [<EndPoint "GET /json">]      Json
-    | [<EndPoint "GET /fortunes">]  Fortunes
-    | [<EndPoint "GET /db">]        SingleQuery
-    | [<EndPoint "GET /queries">][<Query("queries")>]   MultipleQuery of queries: int
-    | [<EndPoint "GET /updates">][<Query("updates")>]   DataUpdate of updates: int
-
-let toPage (pageContent: ContentForTemplate) = Content.Page(Doctype = pageContent.Doctype, 
-                                                            Title = pageContent.Title, 
-                                                            Body = pageContent.Body)
 
 let (>>=) (wrapped: Async<'a>) (wrapper: 'a -> Async<'b>) =
     async { let! contents = wrapped 
@@ -31,7 +19,7 @@ let BenchmarksApplication =
     Sitelet.InferWithCustomErrors <| fun ctx -> function
         | Success Endpoints.Plaintext   -> Hello.plaintextContent |> Content.Text 
         | Success Endpoints.Json        -> Hello.jsonContent |> Content.Json
-        | Success Endpoints.Fortunes    -> Fortune.fortuneContent |> toPage
+        | Success Endpoints.Fortunes    -> Fortune.fortuneContent 
 
         | Success Endpoints.SingleQuery -> World.singleQueryContent random |> Content.Json
 
