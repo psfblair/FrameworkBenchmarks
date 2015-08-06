@@ -8,7 +8,7 @@ set -e
 
 # Clean
 rm -rf bin obj
--rm -rf ${TROOT}/paket-files/fsprojects/SQLProvider/bin
+rm -rf ${TROOT}/paket-files/fsprojects/SQLProvider/bin
 
 # Make sure the SQL type provider is built
 chmod 755 ${TROOT}/paket-files/fsprojects/SQLProvider/build.sh
