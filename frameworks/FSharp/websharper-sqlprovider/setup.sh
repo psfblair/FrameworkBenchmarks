@@ -25,7 +25,6 @@ export FSharpHome=${MONO_PATH}
 export NuGetHome=/${TROOT}/paket-files/intellifactory/websharper.warp/tools/NuGet
 ./build.sh
 cd ${TROOT}
-mono $NuGetHome/NuGet.exe install WebSharper.Warp -version 3.4.13.0 -source ${TROOT}/paket-files/intellifactory/websharper.warp/build/
 
 # get dependencies
 mono ${PAKET_EXE} install

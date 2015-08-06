@@ -46,7 +46,6 @@ if ($action -eq 'start') {
 	 Set-Location -Path paket-files\intellifactory\websharper.warp
 	 Exec { & .\build.cmd }    
 	 Set-Location -Path ..\..\..\
-	 Exec { & paket-files\intellifactory\websharper.warp\tools\NuGet\NuGet.exe install WebSharper.Warp -Version 3.4.13.0 -Source paket-files\intellifactory\websharper.warp\build }
     
 	 # Build the SQL Provider
 	 Set-Location -Path paket-files\fsprojects\SQLProvider
