@@ -1,4 +1,4 @@
-source http://www.phobot.net/NuGet
+source https://www.myget.org/F/websharper-temp/api/v2
 nuget WebSharper.Warp
 
 source https://nuget.org/api/v2

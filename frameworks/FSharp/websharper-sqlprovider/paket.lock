@@ -36,7 +36,7 @@ NUGET
       WebSharper
     WebSharper.UI.Next (3.4.9.157)
       WebSharper
-  remote: http://www.phobot.net/NuGet
+  remote: https://www.myget.org/F/websharper-temp/api/v2
   specs:
     WebSharper.Warp (3.4.13.0)
       Microsoft.Owin
@@ -55,6 +55,3 @@ GITHUB
   remote: fsprojects/SQLProvider
   specs:
     FULLPROJECT (6abc98d0f21d2842abe631bf9eb5a1d9f60f5ed4)
-  remote: intellifactory/websharper.warp
-  specs:
-    FULLPROJECT (55e1c8eac2c59d15986596c17e508fee46e41dfe)
