@@ -41,15 +41,15 @@ if ($action -eq 'start') {
 	If (Test-Path paket-files\fsprojects\SQLProvider\bin) {
 		Remove-Item paket-files\fsprojects\SQLProvider\bin\* -recurse
 	}
-    
+    	
+	 # get and install dependencies
+	 Exec { & paket.exe install }
+
 	 # Build the SQL Provider
 	 Set-Location -Path paket-files\fsprojects\SQLProvider
 	 Exec { & .\build.cmd }
     
 	 Set-Location -Path ..\..\..\
-	
-	 # get and install dependencies
-	 Exec { & paket.exe install }
 	
     # Build the project
 	 If ($webhost -eq 'iis') {

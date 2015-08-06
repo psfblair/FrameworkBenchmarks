@@ -10,14 +10,14 @@ set -e
 rm -rf bin obj
 rm -rf ${TROOT}/paket-files/fsprojects/SQLProvider/bin
 
+# get and install all dependencies
+mono ${PAKET_EXE} install
+
 # Make sure the SQL type provider is built
 chmod 755 ${TROOT}/paket-files/fsprojects/SQLProvider/build.sh
 cd ${TROOT}/paket-files/fsprojects/SQLProvider
 ./build.sh
 cd ${TROOT}
-
-# get and install all dependencies
-mono ${PAKET_EXE} install
 
 # Need to have a database at compile time in order for the
 # SQL type provider to work. Make sure the Src directory is
