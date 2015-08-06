@@ -27,16 +27,16 @@ NUGET
     NUnit (2.6.4)
     Owin (1.0)
     Unquote (3.0.0)
-    WebSharper (3.4.8.187)
-    WebSharper.Compiler (3.4.8.187)
-      WebSharper (>= 3.4.8.187)
+    WebSharper (3.4.9.188)
+    WebSharper.Compiler (3.4.9.188)
+      WebSharper (>= 3.4.9.188)
     WebSharper.Owin (3.4.5.101)
       Microsoft.Owin
       Owin
       WebSharper
-    WebSharper.UI.Next (3.4.8.156)
+    WebSharper.UI.Next (3.4.8.157)
       WebSharper
-    WebSharper.Warp (3.4.11.38)
+    WebSharper.Warp (3.4.13.0)
       Microsoft.Owin
       Microsoft.Owin.Diagnostics
       Microsoft.Owin.FileSystems
@@ -53,3 +53,6 @@ GITHUB
   remote: fsprojects/SQLProvider
   specs:
     FULLPROJECT (54436832fae55b44fce215a4272956204221b705)
+  remote: intellifactory/websharper.warp
+  specs:
+    FULLPROJECT (55e1c8eac2c59d15986596c17e508fee46e41dfe)

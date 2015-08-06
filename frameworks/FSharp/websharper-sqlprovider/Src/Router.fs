@@ -38,6 +38,6 @@ let BenchmarksApplication =
 
 #if WARP
 [<EntryPoint>]
-do Warp.RunAndWaitForInput (BenchmarksApplication, false, "http://127.0.0.1:9000") |> ignore
+do Warp.RunAndWaitForInput (BenchmarksApplication, urls = ["http://127.0.0.1:9000"; "http://localhost:9000"]) |> ignore
 #else
 #endif

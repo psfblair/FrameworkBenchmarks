@@ -41,24 +41,30 @@ if ($action -eq 'start') {
 	If (Test-Path paket-files\fsprojects\SQLProvider\bin) {
 		Remove-Item paket-files\fsprojects\SQLProvider\bin\* -recurse
 	}
-	
-    # get dependencies
-    paket.exe install
 
-    # Build the SQL Provider
-    Set-Location -Path paket-files\fsprojects\SQLProvider
-    Exec { & .\build.cmd }
+	 # Temporary: Build and install the latest WebSharper Warp from source
+	 Set-Location -Path paket-files\intellifactory\websharper.warp
+	 Exec { & .\build.cmd }    
+	 Set-Location -Path ..\..\..\
+	 Exec { & paket-files\intellifactory\websharper.warp\tools\NuGet\NuGet.exe install WebSharper.Warp -Version 3.4.13.0 -Source paket-files\intellifactory\websharper.warp\build }
     
-    # Build the project
-    Set-Location -Path ..\..\..\
+	 # Build the SQL Provider
+	 Set-Location -Path paket-files\fsprojects\SQLProvider
+	 Exec { & .\build.cmd }
+    
+	 Set-Location -Path ..\..\..\
 	
-	if ($webhost -eq 'iis') {
+	 # get dependencies
+	 paket.exe install
+	
+    # Build the project
+	 if ($webhost -eq 'iis') {
 		# Create a website in IIS
 		New-Item -Path $wwwroot -Type directory | Out-Null
 		New-WebSite -Name Benchmarks -Port 8080 -PhysicalPath $wwwroot
 		Exec { & $msbuild "websharper-iis-sqlprovider.sln" /p:DeployOnBuild=true /p:PublishProfile=IIS /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
-	} else {
+	 } else {
 		Exec { & $msbuild "websharper-warp-sqlprovider.sln" /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
 		Start-Process "bin\Release\websharper-warp-sqlprovider.exe"
-	}
+	 }
 }
