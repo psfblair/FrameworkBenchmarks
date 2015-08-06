@@ -1,5 +1,4 @@
-
-source paket-files/intellifactory/websharper.warp/build
+source http://www.phobot.net/NuGet
 nuget WebSharper.Warp
 
 source https://nuget.org/api/v2
@@ -11,4 +10,3 @@ nuget Npgsql
 nuget Unquote
 
 github fsprojects/SQLProvider
-github intellifactory/websharper.warp

@@ -36,7 +36,7 @@ NUGET
       WebSharper
     WebSharper.UI.Next (3.4.9.157)
       WebSharper
-  remote: paket-files/intellifactory/websharper.warp/build
+  remote: http://www.phobot.net/NuGet
   specs:
     WebSharper.Warp (3.4.13.0)
       Microsoft.Owin

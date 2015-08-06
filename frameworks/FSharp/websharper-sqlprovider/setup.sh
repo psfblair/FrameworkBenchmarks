@@ -8,32 +8,11 @@ set -e
 
 # Clean
 rm -rf bin obj
-rm -rf ${TROOT}/paket-files
-
-# Download the source for the projects we're building from source
-mkdir -p paket-files/fsprojects
-cd paket-files/fsprojects
-git clone https://github.com/fsprojects/SQLProvider.git
-cd ${TROOT}
-
-mkdir -p paket-files/intellifactory
-cd paket-files/intellifactory
-git clone https://github.com/intellifactory/websharper.warp.git
-cd ${TROOT}
+-rm -rf ${TROOT}/paket-files/fsprojects/SQLProvider/bin
 
 # Make sure the SQL type provider is built
 chmod 755 ${TROOT}/paket-files/fsprojects/SQLProvider/build.sh
 cd ${TROOT}/paket-files/fsprojects/SQLProvider
-./build.sh
-cd ${TROOT}
-
-# Temporary, until WebSharper Warp gets updated in NuGet repo:
-# Build the WebSharper Warp with the commit allowing listening
-# on multiple URIs (needed for benchmarks to work).
-chmod 755 ${TROOT}/paket-files/intellifactory/websharper.warp/build.sh
-cd ${TROOT}/paket-files/intellifactory/websharper.warp
-export FSharpHome=${MONO_PATH}
-export NuGetHome=/${TROOT}/paket-files/intellifactory/websharper.warp/tools/NuGet
 ./build.sh
 cd ${TROOT}
 
