@@ -11,9 +11,13 @@ rm -rf bin obj
 rm -rf ${TROOT}/paket-files
 
 # Download the source for the projects we're building from source
-mkdir paket-files
-cd paket-files
+mkdir -p paket-files/fsprojects
+cd paket-files/fsprojects
 git clone https://github.com/fsprojects/SQLProvider.git
+cd ${TROOT}
+
+mkdir -p paket-files/intellifactory
+cd paket-files/intellifactory
 git clone https://github.com/intellifactory/websharper.warp.git
 cd ${TROOT}
 

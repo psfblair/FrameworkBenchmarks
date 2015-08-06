@@ -42,13 +42,17 @@ if ($action -eq 'start') {
 		Remove-Item paket-files\* -recurse
 	} Else {
 		New-Item -Path . -Name paket-files  -Type directory | Out-Null
+		New-Item -Path .\paket-files -Name fsprojects  -Type directory | Out-Null
+		New-Item -Path .\paket-files -Name intellifactory  -Type directory | Out-Null
 	}
 	
 	 # Download the github project dependencies
-	 Set-Location -Path paket-files
+	 Set-Location -Path paket-files\fsprojects
 	 Exec { git clone https://github.com/fsprojects/SQLProvider.git }
+	 
+	 Set-Location -Path ..\intellifactory
 	 Exec { git clone https://github.com/intellifactory/websharper.warp.git }
-	 Set-Location -Path ..\
+	 Set-Location -Path ..\..\
 	 
 	 # Temporary: Build and install the latest WebSharper Warp from source
 	 Set-Location -Path paket-files\intellifactory\websharper.warp
