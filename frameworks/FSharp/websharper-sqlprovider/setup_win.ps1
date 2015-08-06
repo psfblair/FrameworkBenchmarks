@@ -38,14 +38,18 @@ if ($action -eq 'start') {
 	If (Test-Path obj) {
 		Remove-Item obj\* -recurse
 	}
-	If (Test-Path paket-files\fsprojects\SQLProvider\bin) {
-		Remove-Item paket-files\fsprojects\SQLProvider\bin\* -recurse
+	If (Test-Path paket-files) {
+		Remove-Item paket-files\* -recurse
+	} Else {
+		New-Item -Path . -Name paket-files  -Type directory | Out-Null
 	}
 	
-	 # This downloads (both) the github project dependencies
-	 # It will fail because they're not built yet, so we ignore the error
-	 paket.exe update nuget fsprojects/SQLProvider
-
+	 # Download the github project dependencies
+	 Set-Location -Path paket-files
+	 Exec { git clone https://github.com/fsprojects/SQLProvider.git }
+	 Exec { git clone https://github.com/intellifactory/websharper.warp.git }
+	 Set-Location -Path ..\
+	 
 	 # Temporary: Build and install the latest WebSharper Warp from source
 	 Set-Location -Path paket-files\intellifactory\websharper.warp
 	 Exec { & .\build.cmd }    
@@ -57,16 +61,16 @@ if ($action -eq 'start') {
     
 	 Set-Location -Path ..\..\..\
 	
-	 # get dependencies
+	 # get and install dependencies
 	 Exec { & paket.exe install }
 	
     # Build the project
-	 if ($webhost -eq 'iis') {
+	 If ($webhost -eq 'iis') {
 		# Create a website in IIS
 		New-Item -Path $wwwroot -Type directory | Out-Null
 		New-WebSite -Name Benchmarks -Port 8080 -PhysicalPath $wwwroot
 		Exec { & $msbuild "websharper-iis-sqlprovider.sln" /p:DeployOnBuild=true /p:PublishProfile=IIS /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
-	 } else {
+	 } Else {
 		Exec { & $msbuild "websharper-warp-sqlprovider.sln" /p:DownloadNuGetExe=true /p:RequireRestoreConsent=false /p:Configuration=Release /t:Rebuild }
 		Start-Process "bin\Release\websharper-warp-sqlprovider.exe"
 	 }

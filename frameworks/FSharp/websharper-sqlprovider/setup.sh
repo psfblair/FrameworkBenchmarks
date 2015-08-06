@@ -8,11 +8,14 @@ set -e
 
 # Clean
 rm -rf bin obj
-rm -rf ${TROOT}/paket-files/fsprojects/SQLProvider/bin
+rm -rf ${TROOT}/paket-files
 
-# This downloads (both) the github project dependencies
-# It will fail because they're not built yet, so we ignore the error
-mono ${PAKET_EXE} update nuget fsprojects/SQLProvider || true
+# Download the source for the projects we're building from source
+mkdir paket-files
+cd paket-files
+git clone https://github.com/fsprojects/SQLProvider.git
+git clone https://github.com/intellifactory/websharper.warp.git
+cd ${TROOT}
 
 # Make sure the SQL type provider is built
 chmod 755 ${TROOT}/paket-files/fsprojects/SQLProvider/build.sh
