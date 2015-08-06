@@ -10,6 +10,10 @@ set -e
 rm -rf bin obj
 rm -rf ${TROOT}/paket-files/fsprojects/SQLProvider/bin
 
+# This downloads (both) the github project dependencies
+# It will fail because they're not built yet, so we ignore the error
+mono ${PAKET_EXE} update nuget fsprojects/SQLProvider || true
+
 # Make sure the SQL type provider is built
 chmod 755 ${TROOT}/paket-files/fsprojects/SQLProvider/build.sh
 cd ${TROOT}/paket-files/fsprojects/SQLProvider
@@ -26,7 +30,7 @@ export NuGetHome=/${TROOT}/paket-files/intellifactory/websharper.warp/tools/NuGe
 ./build.sh
 cd ${TROOT}
 
-# get dependencies
+# get and install all dependencies
 mono ${PAKET_EXE} install
 
 # Need to have a database at compile time in order for the

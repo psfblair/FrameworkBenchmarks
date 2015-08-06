@@ -41,6 +41,10 @@ if ($action -eq 'start') {
 	If (Test-Path paket-files\fsprojects\SQLProvider\bin) {
 		Remove-Item paket-files\fsprojects\SQLProvider\bin\* -recurse
 	}
+	
+	 # This downloads (both) the github project dependencies
+	 # It will fail because they're not built yet, so we ignore the error
+	 paket.exe update nuget fsprojects/SQLProvider
 
 	 # Temporary: Build and install the latest WebSharper Warp from source
 	 Set-Location -Path paket-files\intellifactory\websharper.warp
@@ -54,7 +58,7 @@ if ($action -eq 'start') {
 	 Set-Location -Path ..\..\..\
 	
 	 # get dependencies
-	 paket.exe install
+	 Exec { & paket.exe install }
 	
     # Build the project
 	 if ($webhost -eq 'iis') {
