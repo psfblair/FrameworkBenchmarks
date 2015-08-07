@@ -7,6 +7,8 @@ open WebSharper.Sitelets
 open WebSharper.Sitelets.Content
 open WebSharper.Sitelets.ActionEncoding
 open System
+open System.Net
+open System.Net.NetworkInformation
 
 let (>>=) (wrapped: Async<'a>) (wrapper: 'a -> Async<'b>) =
     async { let! contents = wrapped 
@@ -37,7 +39,23 @@ let BenchmarksApplication =
         | _                             -> Content.NotFound
 
 #if WARP
+let hostName = Dns.GetHostName()
+let domainName = IPGlobalProperties.GetIPGlobalProperties().DomainName
+
+let fullyQualifiedName = 
+        if (hostName.EndsWith(domainName) || domainName = "(none)") 
+        then hostName
+        else domainName + "." + hostName
+
+let ipAddresses = Dns.GetHostAddresses(fullyQualifiedName) 
+                    |> Array.map (fun x -> x.ToString()) 
+                    |> Set.ofArray
+
+let allAddresses = ipAddresses |> Set.add fullyQualifiedName |> Set.add "127.0.0.1" |> Set.add "localhost"
+
+let urlsToListenOn = allAddresses |> Set.map (fun address -> "http://" + address + ":8085/") |> Set.toList
+
 [<EntryPoint>]
-do Warp.RunAndWaitForInput (BenchmarksApplication, urls = ["http://127.0.0.1:9000"; "http://localhost:9000"]) |> ignore
+do Warp.RunAndWaitForInput (BenchmarksApplication, urls = urlsToListenOn) |> ignore
 #else
 #endif

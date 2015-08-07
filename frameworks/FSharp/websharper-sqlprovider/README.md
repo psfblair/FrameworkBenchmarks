@@ -4,18 +4,18 @@
 
 ### JSON Response
 
-* `http://localhost:9000/json`
+* `http://localhost:8085/json`
 
 ### Plain Text Response
 
-* `http://localhost:9000/plaintext`
+* `http://localhost:8085/plaintext`
 
 ### Database Responses
 
-* `http://localhost:9000/db`
-* `http://localhost:9000/queries/10`
-* `http://localhost:9000/fortunes`
-* `http://localhost:9000/updates/25`
+* `http://localhost:8085/db`
+* `http://localhost:8085/queries/10`
+* `http://localhost:8085/fortunes`
+* `http://localhost:8085/updates/25`
 
 ---
 
