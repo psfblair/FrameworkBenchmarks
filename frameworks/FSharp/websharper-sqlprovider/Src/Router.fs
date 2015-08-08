@@ -39,23 +39,30 @@ let BenchmarksApplication =
         | _                             -> Content.NotFound
 
 #if WARP
-let hostName = Dns.GetHostName()
-let domainName = IPGlobalProperties.GetIPGlobalProperties().DomainName
-
-let fullyQualifiedName = 
-        if (hostName.EndsWith(domainName) || domainName = "(none)") 
-        then hostName
-        else domainName + "." + hostName
-
-let ipAddresses = Dns.GetHostAddresses(fullyQualifiedName) 
-                    |> Array.map (fun x -> x.ToString()) 
-                    |> Set.ofArray
-
-let allAddresses = ipAddresses |> Set.add fullyQualifiedName |> Set.add "127.0.0.1" |> Set.add "localhost"
-
-let urlsToListenOn = allAddresses |> Set.map (fun address -> "http://" + address + ":8085/") |> Set.toList
 
 [<EntryPoint>]
-do Warp.RunAndWaitForInput (BenchmarksApplication, urls = urlsToListenOn) |> ignore
+let main address_args =
+    let hostName = Dns.GetHostName()
+    let domainName = IPGlobalProperties.GetIPGlobalProperties().DomainName
+
+    let fullyQualifiedName = 
+            if (hostName.EndsWith(domainName) || domainName = "(none)") 
+            then hostName
+            else domainName + "." + hostName
+
+    let ipAddresses = Dns.GetHostAddresses(fullyQualifiedName) 
+                        |> Array.map (fun x -> x.ToString()) 
+                        |> Set.ofArray
+    
+
+    let allAddresses = ipAddresses 
+                        |> Set.add fullyQualifiedName 
+                        |> Set.add "127.0.0.1" 
+                        |> Set.add "localhost"
+                        |> Set.union (Set.ofArray address_args)
+
+    let urlsToListenOn = allAddresses |> Set.map (fun address -> "http://" + address + ":8085/") |> Set.toList
+
+    Warp.RunAndWaitForInput (BenchmarksApplication, urls = urlsToListenOn)
 #else
 #endif
