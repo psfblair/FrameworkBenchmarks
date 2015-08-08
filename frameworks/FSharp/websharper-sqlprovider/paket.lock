@@ -38,6 +38,7 @@ NUGET
       WebSharper
   remote: https://www.myget.org/F/websharper-temp/api/v2
   specs:
+    FSharp.Data.SqlProvider (0.0.9.1-alpha)
     WebSharper.Warp (3.4.13.0)
       Microsoft.Owin
       Microsoft.Owin.Diagnostics
@@ -51,7 +52,3 @@ NUGET
       WebSharper.Compiler
       WebSharper.Owin
       WebSharper.UI.Next
-GITHUB
-  remote: fsprojects/SQLProvider
-  specs:
-    FULLPROJECT (6abc98d0f21d2842abe631bf9eb5a1d9f60f5ed4)
