@@ -7,6 +7,6 @@ source https://nuget.org/api/v2
 nuget FAKE
 nuget FSharp.Compiler.Tools
 nuget NUnit
-nuget Npgsql
+nuget Npgsql ~> 2.2.5
 nuget Unquote
 

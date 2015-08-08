@@ -4,3 +4,4 @@ NUnit
 Unquote
 FAKE
 WebSharper.Warp
+FSharp.Data.SqlProvider
