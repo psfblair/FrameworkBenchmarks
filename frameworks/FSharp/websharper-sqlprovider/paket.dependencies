@@ -1,7 +1,3 @@
-source https://www.myget.org/F/websharper-temp/api/v2
-nuget WebSharper.Warp
-nuget FSharp.Data.SqlProvider
-
 source https://nuget.org/api/v2
 
 nuget FAKE
@@ -9,4 +5,9 @@ nuget FSharp.Compiler.Tools
 nuget NUnit
 nuget Npgsql ~> 2.2.5
 nuget Unquote
+nuget Microsoft.Owin >= 3.0
 
+source https://www.myget.org/F/websharper-temp/api/v2
+
+nuget WebSharper.Warp
+nuget FSharp.Data.SqlProvider
