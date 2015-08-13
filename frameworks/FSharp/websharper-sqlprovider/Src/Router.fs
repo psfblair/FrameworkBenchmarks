@@ -63,6 +63,6 @@ let main address_args =
 
     let urlsToListenOn = allAddresses |> Set.map (fun address -> "http://" + address + ":8085/") |> Set.toList
 
-    Warp.RunAndWaitForInput (BenchmarksApplication, urls = urlsToListenOn)
+    Warp.RunAndWaitForInput (BenchmarksApplication, urls = urlsToListenOn, before = [Logging.logger])
 #else
 #endif

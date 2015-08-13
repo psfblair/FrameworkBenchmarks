@@ -45,6 +45,7 @@
     <Compile Include="Src\World\Controller.fs" />
     <Compile Include="Src\World\WorldTests.fs" />
     <Compile Include="Src\Hello\Hello.fs" />
+    <Compile Include="Src\LoggingMiddleware.fs" />
     <Compile Include="Src\Router.fs" />
     <None Include="README.md" />
     <None Include="websharper-warp-sqlprovider.config" />
