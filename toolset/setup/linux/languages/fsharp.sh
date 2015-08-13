@@ -11,8 +11,7 @@ fw_depends mono
 
 git clone https://github.com/fsharp/fsharp
 cd fsharp
-# Just after 4.0.0.2 - corresponds to Visual F# 4.0 release
-git checkout 70e5f0221bded74457ac61f7f74c57ccf9f7bd28
+git checkout tags/4.0.0.3
 
 # build
 ./autogen.sh --prefix=${MONO_HOME} --disable-docs
