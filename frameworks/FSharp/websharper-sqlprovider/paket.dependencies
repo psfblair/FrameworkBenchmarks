@@ -10,4 +10,4 @@ nuget Microsoft.Owin >= 3.0
 source https://www.myget.org/F/websharper-temp/api/v2
 
 nuget WebSharper.Warp
-nuget FSharp.Data.SqlProvider
+nuget FSharp.Data.SqlProvider -> 0.0.9.1-alpha
