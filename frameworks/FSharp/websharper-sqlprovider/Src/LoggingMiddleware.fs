@@ -61,7 +61,7 @@ module Logging =
             let requestMethod = dict.TryGetValue("owin.RequestMethod") |> defaultValue ""
             let requestPath = dict.TryGetValue("owin.RequestPath") |> defaultValue ""
             let responseStatus = dict.TryGetValue("owin.ResponseStatusCode") |> defaultValue ""
-            String.Format("{0} {6} {7} {8}", time, requestMethod, requestPath, responseStatus)
+            String.Format("{0} {1} {2} {3}", time, requestMethod, requestPath, responseStatus)
 
         let logResponse (logger: ILogger) env =
             responseToString DateTime.Now env |> logger.WriteInformation
