@@ -48,7 +48,7 @@
     <Compile Include="Src\LoggingMiddleware.fs" />
     <Compile Include="Src\Router.fs" />
     <None Include="README.md" />
-    <None Include="websharper-warp-sqlprovider.config" />
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -60,7 +60,6 @@
   <ItemGroup>
     <Reference Include="FSharp.Data.SqlProvider">
       <HintPath>packages\FSharp.Data.SqlProvider\lib\FSharp.Data.SqlProvider.dll</HintPath>
-      <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
   </ItemGroup>
@@ -191,7 +190,6 @@
   <ItemGroup>
     <Reference Include="nunit.framework">
       <HintPath>packages\NUnit\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
   </ItemGroup>
